@@ -6,7 +6,7 @@ h1 {
     
 }
 body {
-    background-image: URL(temporary.png);
+    background-image: URL(temporary.jpg);
     background-repeat: no-repeat;
     background-size: cover;
    
@@ -14,9 +14,10 @@ body {
 .block {
     display: block;
     position: fixed;
-    bottom: 0px;
+    left: 24%;
+    bottom: 50px;
     height: 80px;
-    width: 100%;
+    width: 50%;
     border: none;
     background-color: blue;
     color: black;
