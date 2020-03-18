@@ -1,7 +1,27 @@
 h1 {
-    color: darkred;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(223, 9, 9);   
+    display: flex;
+    justify-content: center;
     
 }
 body {
-    
+    background-image: URL(download.jfif);
+    background-repeat: no-repeat;
+    background-size: cover;
+   
 }
+.block {
+    display: block;
+    position: fixed;
+    bottom: 0px;
+    height: 80px;
+    width: 100%;
+    border: none;
+    background-color: blue;
+    color: black;
+    padding: 14px 28px;
+    font-size: 50px;
+    cursor: pointer;
+    text-align: center;
+  }
