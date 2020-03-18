@@ -8,6 +8,33 @@ let enterName;
 let playerName;
 let beginGame;
 
+let arrayRooms = [
+    'office', 'kitchen', 'lobby'
+];
+
+const pickRoom = () => {
+    let pickedRoom = prompt(`Pick a room to investigate ${arrayRooms}`);
+    if(pickedRoom.toLowerCase() == 'office') {
+        delete arrayRooms[0];
+        pickRoom();
+       } else {
+        if(pickedRoom.toLowerCase() == 'kitchen') {
+            delete arrayRooms[1];
+            alert(`run kitchen function`);
+        } else {
+            if(pickedRoom.toLowerCase() == 'lobby') {
+                delete arrayRooms[2];
+                alert(`run lobby function`);
+            } else {
+                if(pickedRoom != arrayRooms) {
+                    alert(`Invalid room chosen, please try again`);
+                    pickRoom();
+                }
+            }
+        }
+    }
+}
+
 const nameCheck = () => {
 enterName = prompt("Please enter your name: ");
 playerName = enterName.charAt(0).toUpperCase();
@@ -46,7 +73,7 @@ if(beginGame.toLowerCase() == "no") {
     alert(`Goodbye ${playerName}`);
 } else {
     if(beginGame.toLowerCase() == "yes") {
-    alert(`test`);
+    pickRoom();
     } else {
         if(beginGame != 'no' && beginGame != 'yes');
         alert(`Please Enter yes or no`)
