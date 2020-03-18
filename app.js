@@ -12,7 +12,7 @@ const nameCheck = () => {
 enterName = prompt("Please enter your name: ");
 playerName = enterName.charAt(0).toUpperCase();
 endOfName = enterName.substring(1).toLowerCase();
-playerName = playerName + endOfName;//enterName.substring(1);
+playerName = playerName + endOfName;
 if(playerName.length <= 2) {
 alert(`Name to Short`);
 nameCheck();
@@ -43,7 +43,7 @@ nameCheck();
 const shallWe = () => {
 beginGame = prompt(`Shall we begin? [yes/no]`);
 if(beginGame.toLowerCase() == "no") {
-    alert(`Screw you ${playerName}`);
+    alert(`Goodbye ${playerName}`);
 } else {
     if(beginGame.toLowerCase() == "yes") {
     alert(`test`);
@@ -53,6 +53,18 @@ if(beginGame.toLowerCase() == "no") {
         shallWe();
     }
 }
+}
+
+const youDied = () => {
+    alert(`YOU DIED!`);
+    alert(`Jay's Death Will Go Unsolved`);
+    alert(`Poor Jay :'(`);
+}
+
+const youFailed = () => {
+    alert(`YOU FAILED!`);
+    alert(`Jay's Death Will Go Unsolved`);
+    alert(`Poor Jay :'(`);
 }
 
 const startGame = () => {
