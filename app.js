@@ -11,8 +11,8 @@ let beginGame;
 const nameCheck = () => {
 enterName = prompt("Please enter your name: ");
 playerName = enterName.charAt(0).toUpperCase();
-playerName = playerName + enterName.substring(1);
-// playerName = enterName.charAt(0).toUppperCase() + enterName.substring(1);
+endOfName = enterName.substring(1).toLowerCase();
+playerName = playerName + endOfName;//enterName.substring(1);
 if(playerName.length <= 2) {
 alert(`Name to Short`);
 nameCheck();
@@ -57,7 +57,6 @@ if(beginGame.toLowerCase() == "no") {
 
 const startGame = () => {
 nameCheck();
-alert(`${suspect1} ${suspect2} ${suspect3} ${suspect4}`)
 alert(`Hello, ${playerName} Welcome to a Murder at Code Nation`);
 shallWe();
 }
