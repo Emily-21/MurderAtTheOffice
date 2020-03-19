@@ -9,14 +9,14 @@ let playerName;
 let beginGame;
 let jayDead = 0; //Used for name easter egg
 let roomsSearched = 0;
-const Bio1 = (`Hi I'm ${suspect1}, I couldn't have murdered ${deadBody} as I was in the pub from 5pm.`);
-const Bio2 = (`Hi I'm ${suspect2}, I was working late all night in the office. I didn't see anything.`);
-const Bio3 = (`Hi I'm ${suspect3}, I saw ${deadBody} as I left the office at 6pm.`);
-const Bio4 = (`Hi I'm ${suspect4}, I had an urgent meeting with ${suspect1} at 6pm.`);
+let Bio1; 
+let Bio2; 
+let Bio3; 
+let Bio4;
 let talkedTo = 0;
 let roomCount = 0;
-const ClueA = "Meet me at the office at 8pm";
-const ClueB = "Meet me at the pub at 6pm";
+const ClueA = (`A note that reads "Team meetup at 7pm - everyone must attend!`);
+const ClueB = (`A receipt for one small Starbucks Americano`);
 const clueC = (`A note from ${suspect1} that reads ${deadBody} get three coffees - make sure mine is a Latte Macchiato`);
 const clueD = (`Amazon receipt for delivery of Advanced Nodejs Reference.`);
 const clueE = (`The Sign-in sheet shows ${suspect1}, ${suspect2} and ${deadBody} were the only ones in the building at 8pm`);
@@ -68,7 +68,7 @@ const allSpoken = () => {
 
 const pickSuspect = () => {
     let names = arraychoice.join(` `);
-    let chosen = prompt(`Who do you want to talk to first ${names}`);
+    let chosen = prompt(`Who do you want to talk to ${names}`);
     chosenName = chosen.charAt(0).toUpperCase();
     endOfChosen = chosen.substring(1).toLowerCase();
     chosenName = chosenName + endOfChosen;
@@ -157,11 +157,13 @@ const clothes = () => {
     let input1 = prompt("Do you want to search Jay's jacket or trousers? [Type jacket or trousers]");
     input1 = input1.toLowerCase();
     if (input1 == "trousers") {
+        alert(`You've found a note in the trousers pocket`);
         alert(ClueA);
         arrayFound.push(ClueA);
     }
     else {
         if (input1 == "jacket") {
+            alert(`You've found a receipt in the jacket pocket`);
             alert(ClueB);
             arrayFound.push(ClueB);
         }
@@ -179,44 +181,72 @@ const nameCheck = () => {
     playerName = enterName.charAt(0).toUpperCase();
     endOfName = enterName.substring(1).toLowerCase();
     playerName = playerName + endOfName;
-    if (playerName.length <= 2) {
-        alert(`Name to Short`);
-        nameCheck();
+    if(playerName.length <= 2) {
+    alert(`Name to Short`);
+    nameCheck();
     } else {
-        if ((playerName == deadBody) && (jayDead == 0)) {
+        if((playerName == deadBody) && (jayDead == 0)) {
             alert(`Sorry ${deadBody} is dead, please pick another name`);
             jayDead++;
             nameCheck();
-        } else {
-            if ((playerName == deadBody) && (jayDead == 1)) {
+        } else { 
+            if((playerName == deadBody) && (jayDead == 1)) {
                 alert(`I said ${deadBody} is dead, PICK ANOTHER NAME`);
                 jayDead++;
                 nameCheck();
             } else {
-                if ((playerName == deadBody) && (jayDead == 2)) {
+                if((playerName == deadBody) && (jayDead == 2)) {
                     alert(`Really? You want to be the dead guy?`);
                     jayDead++;
                     nameCheck();
                 } else {
-                    if ((playerName == deadBody) && (jayDead == 3)) {
+                    if((playerName == deadBody) && (jayDead == 3)) {
                         alert(`Fine, you're the dead guy`);
                         alert(`and now there's nobody to solve the murder`);
                         alert(`Happy now?`);
-                        alert('Goodbye dead person');
+                        alert('Goodbye dead person'); 
                         jayDead = 0;
                         nameCheck();
                     } else {
-                        if (playerName == suspect1) {
+                        if(playerName == suspect1) {
                             suspect1 = 'Robert';
+                            arraychoice = [
+                                suspect1, suspect2, suspect3, suspect4
+                            ];
+                            Bio1 = (`Hi I'm ${suspect1}, I couldn't have murdered ${deadBody} as I was in the pub from 5pm.`);
+                            Bio2 = (`Hi I'm ${suspect2}, I was working late all night in the office. I didn't see anything.`);
+                            Bio3 = (`Hi I'm ${suspect3}, I saw ${deadBody} as I left the office at 6pm.`);
+                            Bio4 = (`Hi I'm ${suspect4}, I had an urgent meeting with ${suspect1} at 6pm.`);
                         } else {
-                            if (playerName == suspect2) {
+                            if(playerName == suspect2) {
                                 suspect2 = 'Robert';
+                                arraychoice = [
+                                    suspect1, suspect2, suspect3, suspect4
+                                ];
+                                Bio1 = (`Hi I'm ${suspect1}, I couldn't have murdered ${deadBody} as I was in the pub from 5pm.`);
+                                Bio2 = (`Hi I'm ${suspect2}, I was working late all night in the office. I didn't see anything.`);
+                                Bio3 = (`Hi I'm ${suspect3}, I saw ${deadBody} as I left the office at 6pm.`);
+                                Bio4 = (`Hi I'm ${suspect4}, I had an urgent meeting with ${suspect1} at 6pm.`);
                             } else {
-                                if (playerName == suspect3) {
+                                if(playerName == suspect3) {
                                     suspect3 = 'Roberta';
+                                    arraychoice = [
+                                        suspect1, suspect2, suspect3, suspect4
+                                    ];
+                                    Bio1 = (`Hi I'm ${suspect1}, I couldn't have murdered ${deadBody} as I was in the pub from 5pm.`);
+                                    Bio2 = (`Hi I'm ${suspect2}, I was working late all night in the office. I didn't see anything.`);
+                                    Bio3 = (`Hi I'm ${suspect3}, I saw ${deadBody} as I left the office at 6pm.`);
+                                    Bio4 = (`Hi I'm ${suspect4}, I had an urgent meeting with ${suspect1} at 6pm.`);
                                 } else {
-                                    if (playerName == suspect4) {
+                                    if(playerName == suspect4) {
                                         suspect4 = 'Robert';
+                                        arraychoice = [
+                                            suspect1, suspect2, suspect3, suspect4
+                                        ];
+                                        Bio1 = (`Hi I'm ${suspect1}, I couldn't have murdered ${deadBody} as I was in the pub from 5pm.`);
+                                        Bio2 = (`Hi I'm ${suspect2}, I was working late all night in the office. I didn't see anything.`);
+                                        Bio3 = (`Hi I'm ${suspect3}, I saw ${deadBody} as I left the office at 6pm.`);
+                                        Bio4 = (`Hi I'm ${suspect4}, I had an urgent meeting with ${suspect1} at 6pm.`);
                                     }
                                 }
                             }
@@ -226,7 +256,7 @@ const nameCheck = () => {
             }
         }
     }
-}
+ }
 
 //Funciton to begin the game
 const shallWe = () => {
@@ -287,9 +317,9 @@ const startGame = () => {
     alert(`${suspect4} "We need more clues, maybe if we search around we'll find some"`);
     alert(`${suspect3} "Excellent idea, lets get started!"`);
     pickRoom();
-    alert(`${playerName} "Ok I've searched two rooms and found the following clues"`)
+    alert(`${playerName} "Ok I've searched two rooms and found the following clues:"`)
     alert(`${arrayFound}`);
-    alert(`Whist reviewing the clues you have found the police arrive`);
+    alert(`Whist reviewing the clues you have found that the police have arrived`);
     alert(`Time to show off your detective skills to the professionals`);
     userGuess();
     //checkclues function
