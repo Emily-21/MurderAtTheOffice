@@ -48,7 +48,8 @@ let arraychoice = [
 ]
 
 const pickSuspect = () => {
-    let chosen = prompt(`Who do you want to talk to first ${arraychoice}`)
+    let names = arraychoice.join(`or`)
+    let chosen = prompt(`Who do you want to talk to first ${names}`)
     if (arraychoice.toLowercase() == suspect1) {
         delete arraychoice(0)
         alert(`${Bio1}`)
