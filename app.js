@@ -38,37 +38,37 @@ const pickRoom = () => {
     }
 }
 // function to allow player to choose who they talk to
-let Bio1 = (`Hi I'm ${suspect1}, I couldn't have murdered ${deadBody} as I was in the pub from 5pm.`)
-let Bio2 = (`Hi I'm ${suspect2}, I was working late all night in the office. I didn't see anything.`)
-let Bio3 = (`Hi I'm ${suspect3}, I saw ${deadBody} as I left the office at 6pm.`)
-let Bio4 = (`Hi I'm ${suspect4}, I had an urgent meeting with ${suspect1} at 6pm.`)
+let Bio1 = (`Hi I'm ${suspect1}, I couldn't have murdered ${deadBody} as I was in the pub from 5pm.`);
+let Bio2 = (`Hi I'm ${suspect2}, I was working late all night in the office. I didn't see anything.`);
+let Bio3 = (`Hi I'm ${suspect3}, I saw ${deadBody} as I left the office at 6pm.`);
+let Bio4 = (`Hi I'm ${suspect4}, I had an urgent meeting with ${suspect1} at 6pm.`);
 
 let arraychoice = [
     suspect1, suspect2, suspect3, suspect4
-]
+];
 
 const pickSuspect = () => {
-    let names = arraychoice.join(`or`)
-    let chosen = prompt(`Who do you want to talk to first ${names}`)
+    let names = arraychoice.join(`or`);
+    let chosen = prompt(`Who do you want to talk to first ${names}`);
     if (arraychoice.toLowercase() == suspect1) {
-        delete arraychoice(0)
-        alert(`${Bio1}`)
+        delete arraychoice[0];
+        alert(`${Bio1}`);
     } else {
         if (arraychoice.toLowercase() == suspect2) {
-            delete arraychoice(1)
-            alert(`${Bio2}`)
+            delete arraychoice[1];
+            alert(`${Bio2}`);
         } else {
             if (arraychoice.toLowercase() == suspect3) {
-                delete arraychoice(2)
-                alert(`${Bio3}`)
+                delete arraychoice[2];
+                alert(`${Bio3}`);
             } else {
                 if (arraychoice.toLowercase() == suspect4) {
-                    delete arraychoice(3)
-                    alert(`${Bio4}`)
+                    delete arraychoice[3];
+                    alert(`${Bio4}`);
                 } else {
                     if (chosen != arraychoice) {
-                        alert(`please choose someone in the room to speak to`)
-                        pickSuspect()
+                        alert(`please choose someone in the room to speak to`);
+                        pickSuspect();
                     }
                 }
             }
