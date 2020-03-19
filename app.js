@@ -1,3 +1,4 @@
+//Declares Name to varibles so can be ajusted if needed
 let suspect1 = 'Stuart';
 let suspect2 = 'Liam';
 let suspect3 = 'Leona';
@@ -12,11 +13,13 @@ let arrayRooms = [
     'office', 'kitchen', 'lobby'
 ];
 
+//function to allow player to pick room, each room is then removed for the array thus stopping repeat room visits
 const pickRoom = () => {
-    let pickedRoom = prompt(`Pick a room to investigate ${arrayRooms}`);
+    let rooms = arrayRooms.join(` or `); //Create new array to display remaining room names without commas, hopefully will not display the undefined rooms
+    let pickedRoom = prompt(`Pick a room to investigate ${rooms}`);
     if(pickedRoom.toLowerCase() == 'office') {
         delete arrayRooms[0];
-        pickRoom();
+        alert(`run office function`);
        } else {
         if(pickedRoom.toLowerCase() == 'kitchen') {
             delete arrayRooms[1];
@@ -35,6 +38,8 @@ const pickRoom = () => {
     }
 }
 
+//Functiomn to convert names with correct format and check the names do not clash with any of the predefined names, if they do it changed the predefined name to
+//Robert or Roberta. Will refuse the name choice of Jay as Jay is dead.
 const nameCheck = () => {
 enterName = prompt("Please enter your name: ");
 playerName = enterName.charAt(0).toUpperCase();
@@ -49,16 +54,16 @@ nameCheck();
         startGame();
     } else {
         if(playerName == suspect1) {
-            suspect1 = 'Bob';
+            suspect1 = 'Robert';
         } else {
             if(playerName == suspect2) {
-                suspect2 = 'Bob';
+                suspect2 = 'Robert';
             } else {
                 if(playerName == suspect3) {
-                    suspect3 = 'Bob';
+                    suspect3 = 'Roberta';
                 } else {
                     if(playerName == suspect4) {
-                        suspect4 = 'Bob';
+                        suspect4 = 'Robert';
                     }
                 }
             }
@@ -67,10 +72,12 @@ nameCheck();
 }
 }
 
+//Funciton to begin the game
 const shallWe = () => {
 beginGame = prompt(`Shall we begin? [yes/no]`);
 if(beginGame.toLowerCase() == "no") {
     alert(`Goodbye ${playerName}`);
+    location = location;
 } else {
     if(beginGame.toLowerCase() == "yes") {
     pickRoom();
@@ -82,20 +89,26 @@ if(beginGame.toLowerCase() == "no") {
 }
 }
 
+//You Died Function
 const youDied = () => {
     alert(`YOU DIED!`);
     alert(`Jay's Death Will Go Unsolved`);
     alert(`Poor Jay :'(`);
+    location = location;
 }
 
+//You Failed Function
 const youFailed = () => {
     alert(`YOU FAILED!`);
     alert(`Jay's Death Will Go Unsolved`);
     alert(`Poor Jay :'(`);
+    location = location;
 }
 
+
+//Function to begin the game
 const startGame = () => {
 nameCheck();
-alert(`Hello, ${playerName} Welcome to a Murder at Code Nation`);
+alert(`Hello ${playerName}, Welcome to a Murder at Office`);
 shallWe();
 }
