@@ -34,7 +34,7 @@ let arraychoice = [
 
 
 const userGuess = () => {
-    let choices = arraychoice;
+    let choices = arraychoice.join(' ')
     let guess = prompt(`Who do you think commited the murder ${choices}`);
     if (guess.toLowerCase() == suspect1) {
         delete arraychoice[0];
