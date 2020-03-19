@@ -30,6 +30,16 @@ let arraychoice = [
     suspect1, suspect2, suspect3, suspect4
 ];
 
+const allSpoken = () => {
+    if(talkedTo < 4) {
+        pickSuspect();
+    } else {
+        return;
+    }
+}
+
+let talkedTo = 0;
+
 const pickSuspect = () => {
     let names = arraychoice.join(` `);
     let chosen = prompt(`Who do you want to talk to first ${names}`);
@@ -37,29 +47,33 @@ const pickSuspect = () => {
     endOfChosen = chosen.substring(1).toLowerCase();
     chosenName = chosenName + endOfChosen;
     chosen = chosen.toLowerCase();
-    if (chosenName == suspect1) {
+    if ((chosenName == suspect1) && (talkedTo <= 4)) {
         delete arraychoice[0]; 
+        talkedTo++;
         alert(`${Bio1}`);
-        pickSuspect();
+        allSpoken();
     } else {
-        if (chosenName == suspect2) {
+        if ((chosenName == suspect2) && (talkedTo <= 4)) {
             delete arraychoice[1];
+            talkedTo++;
             alert(`${Bio2}`);
-            pickSuspect();
+            allSpoken();
         } else {
-            if (chosenName == suspect3) {
+            if ((chosenName == suspect3) && (talkedTo <= 4)) {
                 delete arraychoice[2];
+                talkedTo++;
                 alert(`${Bio3}`);
-                pickSuspect();
+                allSpoken();
             } else {
-                if (chosenName == suspect4) {
+                if ((chosenName == suspect4) && (talkedTo <= 4)) {
                     delete arraychoice[3];
+                    talkedTo++;
                     alert(`${Bio4}`);
-                    pickSuspect();
+                    allSpoken();
                 } else {
                     if (chosenName != arraychoice) {
                         alert(`please choose someone in the room to speak to`);
-                        pickSuspect();
+                        allSpoken();
                     }
                 }
             }
