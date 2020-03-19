@@ -33,6 +33,30 @@ let arraychoice = [
 ];
 
 
+const userGuess = () => {
+    let choices = arraychoice;
+    let guess = prompt(`Who do you think commited the murder ${choices}`);
+    if (guess.toLowerCase() == suspect1) {
+        delete arraychoice[0];
+        alert(`Congratulations you solved the murder`);
+    } else {
+        if (guess.toLowerCase() == suspect2) {
+            delete arraychoice[1];
+            alert(`${youFailed}`);
+        } else {
+            if (guess.toLowerCase() == suspect3) {
+                delete arraychoice[2];
+                alert(`${youFailed}`);
+            } else {
+                if (guess.toLowerCase() == suspect4) {
+                    delete arraychoice[3];
+                    alert(`${youDied}`);
+                }
+            }
+        }
+    }
+}
+
 // function to allow player to choose who they talk to
 const allSpoken = () => {
     if (talkedTo < 4) {
@@ -267,6 +291,7 @@ const startGame = () => {
     alert(`${arrayFound}`);
     alert(`Whist reviewing the clues you have found the police arrive`);
     alert(`Time to show off your detective skills to the professionals`);
+    userGuess();
     //checkclues function
     //make accusations
     //ending
