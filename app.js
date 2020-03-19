@@ -21,6 +21,7 @@ const clueC = (`A note from ${suspect1} that reads ${deadBody} get three coffees
 const clueD = (`Amazon receipt for delivery of Advanced Nodejs Reference.`);
 const clueE = (`The Sign-in sheet shows ${suspect1}, ${suspect2} and ${deadBody} were the only ones in the building at 8pm`);
 
+let choices = [suspect1, suspect2, suspect3, suspect4];
 
 let arrayFound = [];
 
@@ -32,30 +33,24 @@ let arraychoice = [
     suspect1, suspect2, suspect3, suspect4
 ];
 
-
 const userGuess = () => {
-    let choices = arraychoice.join(' ')
-    let guess = prompt(`Who do you think commited the murder ${choices}`);
-    if (guess.toLowerCase() == suspect1) {
-        delete arraychoice[0];
+    let guessA = prompt(`Who do you think commited the murder ${choices}`);
+    guessB = guessA.charAt(0).toUpperCase();
+    guessEnd = guessA.substring(1).toLowerCase();
+    guess = guessB + guessEnd;
+    if (guess == suspect1) {
         alert(`Congratulations you solved the murder`);
+        alert(`${playerName} "Why Stuart, why did you kill jay!!!!!!`);
+        alert(`${suspect1} "He forgot my coffee again!!!! and for the last time!"`);
+        alert(`Congratulations, you solved the mystry, well done!`);
     } else {
-        if (guess.toLowerCase() == suspect2) {
-            delete arraychoice[1];
-            alert(`${youFailed}`);
-        } else {
-            if (guess.toLowerCase() == suspect3) {
-                delete arraychoice[2];
-                alert(`${youFailed}`);
-            } else {
-                if (guess.toLowerCase() == suspect4) {
-                    delete arraychoice[3];
-                    alert(`${youDied}`);
-                }
-            }
-        }
+        alert(`You guessed incorrectly!`);
+        alert(`The murderer got away`);
+        alert(`${guess} will no spend the rest of thier life in jail`);
+        alert(`Well Done!`);
     }
 }
+
 
 // function to allow player to choose who they talk to
 const allSpoken = () => {
@@ -177,6 +172,10 @@ const clothes = () => {
 //Functiomn to convert names with correct format and check the names do not clash with any of the predefined names, if they do it changed the predefined name to
 //Robert or Roberta. Will refuse the name choice of Jay as Jay is dead.
 const nameCheck = () => {
+    Bio1 = (`Hi I'm ${suspect1}, I couldn't have murdered ${deadBody} as I was in the pub from 5pm.`);
+    Bio2 = (`Hi I'm ${suspect2}, I was working late all night in the office. I didn't see anything.`);
+    Bio3 = (`Hi I'm ${suspect3}, I saw ${deadBody} as I left the office at 6pm.`);
+    Bio4 = (`Hi I'm ${suspect4}, I had an urgent meeting with ${suspect1} at 6pm.`);
     enterName = prompt("Please enter your name: ");
     playerName = enterName.charAt(0).toUpperCase();
     endOfName = enterName.substring(1).toLowerCase();
@@ -322,7 +321,4 @@ const startGame = () => {
     alert(`Whist reviewing the clues you have found that the police have arrived`);
     alert(`Time to show off your detective skills to the professionals`);
     userGuess();
-    //checkclues function
-    //make accusations
-    //ending
 }
