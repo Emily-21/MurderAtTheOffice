@@ -40,14 +40,14 @@ const userGuess = () => {
         alert(`${playerName} "Why Stuart? Why did you kill ${deadBody}?!!!!!!`);
         alert(`${suspect1} "He forgot my coffee again!!!! And for the last time!"`);
         alert(`Congratulations! You have solved the mystery! Well done!`);
-        location = location;
+        location = location; //reloads page to reset game
     } else {
         if((guess == suspect2) || (guess == suspect3) || (guess == suspect4)) {
         alert(`You guessed incorrectly!`);
         alert(`The murderer got away`);
         alert(`${guess} will now spend the rest of their life in jail`);
         alert(`Well Done!`);
-        location = location; //reloads page to resat game
+        location = location; //reloads page to reset game
     } else {
         if(guess == playerName){
             alert(`You killed ${deadBody}? But that makes no sense!`);
@@ -61,7 +61,6 @@ const userGuess = () => {
     }
 }
 }
-
 
 // function to count how many people have been spoken to and to move the game on once all 4 have been selected
 const allSpoken = () => {
@@ -126,7 +125,7 @@ const roomsChecked = () => {
 //function to allow player to pick room, each room is then removed for the array thus stopping repeat room visits
 const pickRoom = () => {
     let rooms = arrayRooms.join(` `); //Create new array to display remaining room names without commas, hopefully will not display the undefined rooms
-    let pickedRoom = prompt(`Pick a room to investigate [You Can Only Visit Two Rooms] [${rooms}]`);
+    let pickedRoom = prompt(`Pick a room to investigate (You can only visit two rooms) [${rooms}]`);
     pickedRoom = pickedRoom.toLowerCase();
     if (pickedRoom == 'office') {
         delete arrayRooms[0];
@@ -259,9 +258,9 @@ const nameCheck = () => {
             }
         }
     }
- }
+}
 
-//Funciton to begin the game
+//Function to begin the game
 const shallWe = () => {
     beginGame = prompt(`Shall we begin? [yes no]`);
     if (beginGame.toLowerCase() == "no") {
