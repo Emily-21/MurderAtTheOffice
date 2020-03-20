@@ -37,9 +37,10 @@ const userGuess = () => {
     guess = guessB + guessEnd;
     if (guess == suspect1) {
         alert(`Congratulations you solved the murder`);
-        alert(`${playerName} "Why Stuart, why did you kill ${deadBody}!!!!!!`);
-        alert(`${suspect1} "He forgot my coffee again!!!! and for the last time!"`);
-        alert(`Congratulations, you solved the mystry, well done!`);
+        alert(`${playerName} "Why Stuart? Why did you kill ${deadBody}?!!!!!!`);
+        alert(`${suspect1} "He forgot my coffee again!!!! And for the last time!"`);
+        alert(`Congratulations! You have solved the mystery! Well done!`);
+        location = location;
     } else {
         if((guess == suspect2) || (guess == suspect3) || (guess == suspect4)) {
         alert(`You guessed incorrectly!`);
@@ -53,9 +54,10 @@ const userGuess = () => {
             alert(`Try again`);
             userGuess();
             location = location; //reloads page to reset game
-        }
+        } else {
         alert(`Invalid selection, please try again`);
         userGuess();
+        }
     }
 }
 }
@@ -124,7 +126,7 @@ const roomsChecked = () => {
 //function to allow player to pick room, each room is then removed for the array thus stopping repeat room visits
 const pickRoom = () => {
     let rooms = arrayRooms.join(` `); //Create new array to display remaining room names without commas, hopefully will not display the undefined rooms
-    let pickedRoom = prompt(`Pick a room to investigate ${rooms} [You Can Only Visit Two Rooms]`);
+    let pickedRoom = prompt(`Pick a room to investigate [You Can Only Visit Two Rooms] [${rooms}]`);
     pickedRoom = pickedRoom.toLowerCase();
     if (pickedRoom == 'office') {
         delete arrayRooms[0];
@@ -160,7 +162,7 @@ const pickRoom = () => {
 const clothes = () => {
     alert(`${suspect1} "We should search the dead body for clues."`);
     alert(`${suspect1} "You search one item of clothing, I'll search the other"`)
-    let input1 = prompt("Do you want to search Jay's jacket or trousers? [Type jacket or trousers]");
+    let input1 = prompt("Do you want to search Jay's jacket or trousers? [Jacket Trousers]");
     input1 = input1.toLowerCase();
     if (input1 == "trousers") {
         alert(`You've found a note in the trousers pocket`);
@@ -261,7 +263,7 @@ const nameCheck = () => {
 
 //Funciton to begin the game
 const shallWe = () => {
-    beginGame = prompt(`Shall we begin? [yes/no]`);
+    beginGame = prompt(`Shall we begin? [yes no]`);
     if (beginGame.toLowerCase() == "no") {
         alert(`Goodbye ${playerName}`);
         location = location;
