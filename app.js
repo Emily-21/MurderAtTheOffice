@@ -164,7 +164,7 @@ const clothes = () => {
     let input1 = prompt("Do you want to search Jay's jacket or trousers? [Jacket Trousers]");
     input1 = input1.toLowerCase();
     if (input1 == "trousers") {
-        alert(`You've found a note in the trousers pocket`);
+        alert(`You've found a note in the trouser pocket`);
         alert(clueA);
         arrayFound.push(clueA);
     }
@@ -306,7 +306,7 @@ const startGame = () => {
     alert(`${playerName} "Oh No! What has happened?!"`);
     alert(`${suspect3} "It's ${deadBody}! He's dead!!!"`);
     alert(`${suspect4} "Somebody has murdered him!"`);
-    alert(`${suspect1} "Who would do such an terrible thing?"`);
+    alert(`${suspect1} "Who would do such a terrible thing?"`);
     alert(`${suspect2} "Who will solve this horrible crime? Maybe you can help?"`);
     pickSuspect();
     clothes();
