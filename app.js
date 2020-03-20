@@ -1,4 +1,4 @@
-//Declares Name to varibles so can be ajusted if needed
+//Declaring all the variables and constants in the game
 let suspect1 = 'Stuart';
 let suspect2 = 'Liam';
 let suspect3 = 'Leona';
@@ -15,24 +15,21 @@ let Bio3;
 let Bio4;
 let talkedTo = 0;
 let roomCount = 0;
-const ClueA = (`A note that reads "Team meetup at 7pm - everyone must attend!`);
-const ClueB = (`A receipt for one small Starbucks Americano`);
-const clueC = (`A note from ${suspect1} that reads ${deadBody} get three coffees - make sure mine is a Latte Macchiato`);
-const clueD = (`Amazon receipt for delivery of Advanced Nodejs Reference.`);
-const clueE = (`The Sign-in sheet shows ${suspect1}, ${suspect2} and ${deadBody} were the only ones in the building at 8pm`);
-
+let clueA;
+let clueB;
+let clueC;
+let clueD;
+let clueE;
 let choices = [suspect1, suspect2, suspect3, suspect4];
-
 let arrayFound = [];
-
 let arrayRooms = [
-    'office', 'kitchen', 'lobby'
+    'Office', 'Kitchen', 'Lobby'
 ];
-
 let arraychoice = [
     suspect1, suspect2, suspect3, suspect4
 ];
 
+//Function for the final solution to the game, the user enters who they think had commit the murder
 const userGuess = () => {
     let guessA = prompt(`Who do you think commited the murder ${choices}`);
     guessB = guessA.charAt(0).toUpperCase();
@@ -40,19 +37,29 @@ const userGuess = () => {
     guess = guessB + guessEnd;
     if (guess == suspect1) {
         alert(`Congratulations you solved the murder`);
-        alert(`${playerName} "Why Stuart, why did you kill jay!!!!!!`);
+        alert(`${playerName} "Why Stuart, why did you kill ${deadBody}!!!!!!`);
         alert(`${suspect1} "He forgot my coffee again!!!! and for the last time!"`);
         alert(`Congratulations, you solved the mystry, well done!`);
     } else {
+        if((guess == suspect2) || (guess == suspect3) || (guess == suspect4)) {
         alert(`You guessed incorrectly!`);
         alert(`The murderer got away`);
-        alert(`${guess} will no spend the rest of thier life in jail`);
+        alert(`${guess} will now spend the rest of thier life in jail`);
         alert(`Well Done!`);
+    } else {
+        if(guess == playerName){
+            alert(`You killed ${deadBody}? But that makes no sense!`);
+            alert(`Try again`);
+            userGuess();
+        }
+        alert(`Invalid selection, please try again`);
+        userGuess();
     }
+}
 }
 
 
-// function to allow player to choose who they talk to
+// function to count how many people have been spoken to and to move the game on once all 4 have been selected
 const allSpoken = () => {
     if (talkedTo < 4) {
         pickSuspect();
@@ -61,6 +68,7 @@ const allSpoken = () => {
     }
 }
 
+// function to allow player to choose who they talk to
 const pickSuspect = () => {
     let names = arraychoice.join(` `);
     let chosen = prompt(`Who do you want to talk to ${names}`);
@@ -102,6 +110,7 @@ const pickSuspect = () => {
     }
 }
 
+//function to count number of rooms checked, once two rooms have been check the game moves forward
 const roomsChecked = () => {
     if (roomCount < 2) {
         pickRoom();
@@ -113,7 +122,7 @@ const roomsChecked = () => {
 //function to allow player to pick room, each room is then removed for the array thus stopping repeat room visits
 const pickRoom = () => {
     let rooms = arrayRooms.join(` `); //Create new array to display remaining room names without commas, hopefully will not display the undefined rooms
-    let pickedRoom = prompt(`Pick a room to investigate ${rooms}`);
+    let pickedRoom = prompt(`Pick a room to investigate ${rooms} [You Can Only Visit Two Rooms]`);
     pickedRoom = pickedRoom.toLowerCase();
     if (pickedRoom == 'office') {
         delete arrayRooms[0];
@@ -153,14 +162,14 @@ const clothes = () => {
     input1 = input1.toLowerCase();
     if (input1 == "trousers") {
         alert(`You've found a note in the trousers pocket`);
-        alert(ClueA);
-        arrayFound.push(ClueA);
+        alert(clueA);
+        arrayFound.push(clueA);
     }
     else {
         if (input1 == "jacket") {
             alert(`You've found a receipt in the jacket pocket`);
-            alert(ClueB);
-            arrayFound.push(ClueB);
+            alert(clueB);
+            arrayFound.push(clueB);
         }
         else {
             alert("please pick either trousers or jacket");
@@ -169,13 +178,25 @@ const clothes = () => {
     }
 }
 
-//Functiomn to convert names with correct format and check the names do not clash with any of the predefined names, if they do it changed the predefined name to
-//Robert or Roberta. Will refuse the name choice of Jay as Jay is dead.
-const nameCheck = () => {
+//function to create bio and clues based off name choices generate in the nameCheck function
+const createStuff = () =>{
+    arraychoice = [
+        suspect1, suspect2, suspect3, suspect4
+    ];
     Bio1 = (`Hi I'm ${suspect1}, I couldn't have murdered ${deadBody} as I was in the pub from 5pm.`);
     Bio2 = (`Hi I'm ${suspect2}, I was working late all night in the office. I didn't see anything.`);
     Bio3 = (`Hi I'm ${suspect3}, I saw ${deadBody} as I left the office at 6pm.`);
     Bio4 = (`Hi I'm ${suspect4}, I had an urgent meeting with ${suspect1} at 6pm.`);
+    clueA = (`A note that reads "Team meet up at 7pm - everyone must attend!"`)
+    clueB = (`A receipt for one small Starbucks Americano`);
+    clueC = (`A note from ${suspect1} that reads "${deadBody} get three coffees - make sure mine is a Latte Macchiato"`);
+    clueD = (`Amazon receipt for delivery of Advanced Nodejs Reference.`);
+    clueE = (`The Sign-in sheet shows ${suspect1}, ${suspect2} and ${deadBody} were the only ones in the building at 8pm`);
+}
+
+//Functiomn to convert names with correct format and check the names do not clash with any of the predefined names, if they do it change the predefined name to
+//Robert or Roberta. Will refuse the name choice of Jay as Jay is dead.
+const nameCheck = () => {
     enterName = prompt("Please enter your name: ");
     playerName = enterName.charAt(0).toUpperCase();
     endOfName = enterName.substring(1).toLowerCase();
@@ -209,43 +230,21 @@ const nameCheck = () => {
                     } else {
                         if(playerName == suspect1) {
                             suspect1 = 'Robert';
-                            arraychoice = [
-                                suspect1, suspect2, suspect3, suspect4
-                            ];
-                            Bio1 = (`Hi I'm ${suspect1}, I couldn't have murdered ${deadBody} as I was in the pub from 5pm.`);
-                            Bio2 = (`Hi I'm ${suspect2}, I was working late all night in the office. I didn't see anything.`);
-                            Bio3 = (`Hi I'm ${suspect3}, I saw ${deadBody} as I left the office at 6pm.`);
-                            Bio4 = (`Hi I'm ${suspect4}, I had an urgent meeting with ${suspect1} at 6pm.`);
+                            createStuff();
                         } else {
                             if(playerName == suspect2) {
                                 suspect2 = 'Robert';
-                                arraychoice = [
-                                    suspect1, suspect2, suspect3, suspect4
-                                ];
-                                Bio1 = (`Hi I'm ${suspect1}, I couldn't have murdered ${deadBody} as I was in the pub from 5pm.`);
-                                Bio2 = (`Hi I'm ${suspect2}, I was working late all night in the office. I didn't see anything.`);
-                                Bio3 = (`Hi I'm ${suspect3}, I saw ${deadBody} as I left the office at 6pm.`);
-                                Bio4 = (`Hi I'm ${suspect4}, I had an urgent meeting with ${suspect1} at 6pm.`);
+                                createStuff();
                             } else {
                                 if(playerName == suspect3) {
                                     suspect3 = 'Roberta';
-                                    arraychoice = [
-                                        suspect1, suspect2, suspect3, suspect4
-                                    ];
-                                    Bio1 = (`Hi I'm ${suspect1}, I couldn't have murdered ${deadBody} as I was in the pub from 5pm.`);
-                                    Bio2 = (`Hi I'm ${suspect2}, I was working late all night in the office. I didn't see anything.`);
-                                    Bio3 = (`Hi I'm ${suspect3}, I saw ${deadBody} as I left the office at 6pm.`);
-                                    Bio4 = (`Hi I'm ${suspect4}, I had an urgent meeting with ${suspect1} at 6pm.`);
+                                    createStuff();
                                 } else {
                                     if(playerName == suspect4) {
                                         suspect4 = 'Robert';
-                                        arraychoice = [
-                                            suspect1, suspect2, suspect3, suspect4
-                                        ];
-                                        Bio1 = (`Hi I'm ${suspect1}, I couldn't have murdered ${deadBody} as I was in the pub from 5pm.`);
-                                        Bio2 = (`Hi I'm ${suspect2}, I was working late all night in the office. I didn't see anything.`);
-                                        Bio3 = (`Hi I'm ${suspect3}, I saw ${deadBody} as I left the office at 6pm.`);
-                                        Bio4 = (`Hi I'm ${suspect4}, I had an urgent meeting with ${suspect1} at 6pm.`);
+                                        createStuff();
+                                    } else {
+                                        createStuff();
                                     }
                                 }
                             }
@@ -290,26 +289,25 @@ const youFailed = () => {
     location = location;
 }
 
-
 //Function to begin the game
 const startGame = () => {
     nameCheck();
     shallWe();
-    alert(`Hello ${playerName}, Welcome to a Murder at Office`);
-    alert(`"What a lovely morning, I can't wait to get to work catch up with all my freinds"`);
-    alert(`"Hmm, it seems very quiet out here today, I wonder where everyone is?"`);
+    alert(`Hello ${playerName}, Welcome to a Murder at the Office`);
+    alert(`${playerName} "What a lovely morning, I can't wait to get to work catch up with all my friends"`);
+    alert(`${playerName} "Hmm, it seems very quiet out here today, I wonder where everyone is?"`);
     alert(`You arrive at the office to find four people stood around something on the floor`);
     alert(`You walk over to find out what is going on`);
     alert(`As you approach you notice the thing on the floor is a body!`);
-    alert(`"Oh No!, Whats happened!"`);
-    alert(`${suspect3} "it's ${deadBody}!, he's dead!!!"`);
+    alert(`${playerName} "Oh No!, What has happened!"`);
+    alert(`${suspect3} "It's ${deadBody}!, he's dead!!!"`);
     alert(`${suspect4} "Somebody has murdered him!"`);
     alert(`${suspect1} "Who would do such an terrible thing?"`);
     alert(`${suspect2} "Who will solve this horrible crime? Maybe you can help?"`);
     pickSuspect();
     clothes();
     alert(`${playerName} "I found a clue!, ${arrayFound}"`);
-    alert(`${playerName} "I wonder what that means?`);
+    alert(`${playerName} "I wonder what that means?"`);
     alert(`${playerName} "${suspect1} did you find anything?"`);
     alert(`${suspect1} "I didn't find anything"`);
     alert(`Hmm... that seems suspicious`);
@@ -317,8 +315,9 @@ const startGame = () => {
     alert(`${suspect3} "Excellent idea, lets get started!"`);
     pickRoom();
     alert(`${playerName} "Ok I've searched two rooms and found the following clues:"`)
-    alert(`${arrayFound}`);
+    alert(`${arrayFound.join(" and ")}`);
     alert(`Whist reviewing the clues you have found that the police have arrived`);
     alert(`Time to show off your detective skills to the professionals`);
     userGuess();
+    location = location;
 }
